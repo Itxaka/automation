@@ -105,6 +105,8 @@ proposals:
       mode: libvirt
       libvirt:
         hypervisor_ip: ##hypervisor_ip##
+    drdb:
+      enabled: true
   deployment:
     elements:
       pacemaker-cluster-member:
@@ -126,10 +128,9 @@ proposals:
   attributes:
     ha:
       storage:
-        shared:
-          device: ##shared_nfs_for_rabbitmq##
-          fstype: nfs
-          options: nfsvers=3
+        mode: drbd
+        drbd:
+          size: 5
   deployment:
     elements:
       rabbitmq-server:
